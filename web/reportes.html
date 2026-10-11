@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Reportes</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="panel">
+
+        <aside class="menu-lateral">
+
+            <div class="logo">
+
+                <h2>
+                    JEDi Express
+                </h2>
+
+                <span>
+                    Panel administrativo
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a href="index.html">
+                    Dashboard
+                </a>
+
+                <a href="usuarios.html">
+                    Usuarios
+                </a>
+
+                <a href="clientes.html">
+                    Clientes
+                </a>
+
+                <a href="paquetes.html">
+                    Paquetes
+                </a>
+
+                <a href="rutas.html">
+                    Rutas
+                </a>
+
+                <a href="seguimiento.html">
+                    Seguimiento
+                </a>
+
+                <a
+                    href="reportes.html"
+                    class="menu-activo"
+                >
+                    Reportes
+                </a>
+
+                <a href="rastreo.html">
+                    Rastreo público
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-cerrar"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+        </aside>
+
+
+        <main class="contenido-panel">
+
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Reportes y control
+                    </h1>
+
+                    <p>
+                        Consulta el estado general de las operaciones logísticas.
+                    </p>
+
+                </div>
+
+
+                <div class="usuario">
+                    Administrador
+                </div>
+
+            </header>
+
+
+            <section class="seccion-dashboard">
+
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Resumen de operaciones
+                        </h2>
+
+                        <p>
+                            Información actual de los paquetes registrados.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tarjetas-dashboard">
+
+
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">
+                            
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total de paquetes
+                            </span>
+
+                            <strong id="reporte-total">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">
+                            
+                        </div>
+
+                        <div>
+
+                            <span>
+                                En almacén
+                            </span>
+
+                            <strong id="reporte-almacen">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">
+                            
+                        </div>
+
+                        <div>
+
+                            <span>
+                                En ruta
+                            </span>
+
+                            <strong id="reporte-ruta">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">
+                            
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Entregados
+                            </span>
+
+                            <strong id="reporte-entregados">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">
+                            
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Pagados
+                            </span>
+
+                            <strong id="reporte-pagados">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <div class="tarjeta-icono">
+                            
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Pendientes
+                            </span>
+
+                            <strong id="reporte-pendientes">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <section class="seccion-dashboard">
+
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Detalle de paquetes
+                        </h2>
+
+                        <p>
+                            Consulta general de los paquetes registrados.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Guía
+                                </th>
+
+                                <th>
+                                    Remitente
+                                </th>
+
+                                <th>
+                                    Destinatario
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Pago
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-reportes">
+
+                            <tr>
+
+                                <td colspan="5">
+                                    Cargando información...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Rastreo de paquete</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="panel">
+
+
+
+        <!-- ==========================================
+             CONTENIDO PRINCIPAL
+        =========================================== -->
+
+        <main class="contenido-panel">
+
+
+            <!-- BARRA SUPERIOR -->
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Rastreo público
+                    </h1>
+
+                    <p>
+                        Consulta el estado de un paquete mediante su número de guía.
+                    </p>
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 CONSULTA DE PAQUETE
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Rastrear paquete
+                        </h2>
+
+                        <p>
+                            Ingresa el número de guía para consultar su información.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="formulario-rastreo">
+
+                    <div class="campo">
+
+                        <label for="numero-guia-rastreo">
+                            Número de guía
+                        </label>
+
+                        <input
+                            type="text"
+                            id="numero-guia-rastreo"
+                            placeholder="Ej. GUIA-2026-000001"
+                            required
+                        >
+
+                    </div>
+
+
+                    <p
+                        id="mensaje-rastreo"
+                        class="mensaje-usuario"
+                    ></p>
+
+
+                    <div class="acciones-modal">
+
+                        <button
+                            type="submit"
+                            class="btn-principal"
+                        >
+                            Consultar paquete
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 RESULTADO DEL RASTREO
+            =========================================== -->
+
+            <section
+                id="resultado-rastreo"
+                class="seccion-dashboard"
+                style="display: none;"
+            >
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Información del paquete
+                        </h2>
+
+                        <p>
+                            Resultado de la consulta.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <tbody>
+
+                            <tr>
+
+                                <th>
+                                    Número de guía
+                                </th>
+
+                                <td id="rastreo-guia">
+                                    -
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>
+                                    Remitente
+                                </th>
+
+                                <td id="rastreo-remitente">
+                                    -
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>
+                                    Destinatario
+                                </th>
+
+                                <td id="rastreo-destinatario">
+                                    -
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>
+                                    Teléfono
+                                </th>
+
+                                <td id="rastreo-telefono">
+                                    -
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>
+                                    Dirección de entrega
+                                </th>
+
+                                <td id="rastreo-direccion">
+                                    -
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>
+                                    Estado del paquete
+                                </th>
+
+                                <td id="rastreo-estado">
+                                    -
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>
+                                    Estado del pago
+                                </th>
+
+                                <td id="rastreo-pago">
+                                    -
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

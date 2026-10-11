@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Paquetes</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="panel">
+
+
+        <!-- ==========================================
+             MENÚ LATERAL
+        =========================================== -->
+
+        <aside class="menu-lateral">
+
+            <div class="logo">
+
+                <h2>
+                    JEDi Express
+                </h2>
+
+                <span>
+                    Panel administrativo
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a href="index.html">
+                    Dashboard
+                </a>
+
+                <a href="usuarios.html">
+                    Usuarios
+                </a>
+
+                <a href="clientes.html">
+                    Clientes
+                </a>
+
+                <a
+                    href="paquetes.html"
+                    class="menu-activo"
+                >
+                    Paquetes
+                </a>
+
+                <a href="rutas.html">
+                    Rutas
+                </a>
+
+                <a href="seguimiento.html">
+                    Seguimiento
+                </a>
+
+                <a href="reportes.html">
+                    Reportes
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-cerrar"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             CONTENIDO PRINCIPAL
+        =========================================== -->
+
+        <main class="contenido-panel">
+
+
+            <!-- ==========================================
+                 BARRA SUPERIOR
+            =========================================== -->
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Paquetes
+                    </h1>
+
+                    <p>
+                        Gestión y control de paquetes
+                    </p>
+
+                </div>
+
+
+                <div class="usuario">
+                    Administrador
+                </div>
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 SECCIÓN PAQUETES
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+
+                <!-- ENCABEZADO -->
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Paquetes registrados
+                        </h2>
+
+                        <p>
+                            Consulta y administra los paquetes del sistema.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-principal"
+                        onclick="mostrarFormularioPaquete()"
+                    >
+                        Nuevo paquete
+                    </button>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     FILTROS DE PAQUETES
+                =========================================== -->
+
+                <div class="filtros-paquetes">
+
+                    <div class="campo">
+
+                        <label for="buscar-paquete">
+                            Buscar paquete
+                        </label>
+
+                        <input
+                            type="text"
+                            id="buscar-paquete"
+                            placeholder="Guía, remitente o destinatario..."
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="filtro-estado-paquete">
+                            Estado
+                        </label>
+
+                        <select id="filtro-estado-paquete">
+
+                            <option value="">
+                                Todos los estados
+                            </option>
+
+                            <option value="En almacén">
+                                En almacén
+                            </option>
+
+                            <option value="En ruta">
+                                En ruta
+                            </option>
+
+                            <option value="Entregado">
+                                Entregado
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="filtro-pago-paquete">
+                            Pago
+                        </label>
+
+                        <select id="filtro-pago-paquete">
+
+                            <option value="">
+                                Todos
+                            </option>
+
+                            <option value="Pagado">
+                                Pagado
+                            </option>
+
+                            <option value="Pendiente">
+                                Pendiente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     TABLA DE PAQUETES
+                =========================================== -->
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Número de guía
+                                </th>
+
+                                <th>
+                                    Remitente
+                                </th>
+
+                                <th>
+                                    Destinatario
+                                </th>
+
+                                <th>
+                                    Teléfono
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Pago
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-paquetes">
+
+                            <tr>
+
+                                <td colspan="9">
+                                    Cargando paquetes...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         MODAL NUEVO PAQUETE
+    =========================================== -->
+
+    <div
+        id="modal-paquete"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+
+            <!-- ENCABEZADO -->
+
+            <div class="modal-encabezado">
+
+                <div>
+
+                    <h2>
+                        Nuevo paquete
+                    </h2>
+
+                    <p>
+                        Registra un nuevo paquete en JEDi Express.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    onclick="cerrarFormularioPaquete()"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 FORMULARIO NUEVO PAQUETE
+            =========================================== -->
+
+            <form id="formulario-paquete">
+
+
+                <!-- ==========================================
+                     CLIENTE / REMITENTE
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nuevo-remitente">
+                        Remitente / Cliente
+                    </label>
+
+                    <div
+                        style="
+                            display: flex;
+                            gap: 10px;
+                            align-items: center;
+                        "
+                    >
+
+                        <select
+                            id="nuevo-remitente"
+                            required
+                            style="flex: 1;"
+                        >
+
+                            <option value="">
+                                Seleccionar cliente...
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="button"
+                            class="btn-tabla"
+                            onclick="mostrarFormularioCliente()"
+                        >
+                            + Nuevo cliente
+                        </button>
+
+                    </div>
+
+                    <input
+                        type="hidden"
+                        id="nuevo-cliente-id"
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     TELÉFONO DEL REMITENTE
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nuevo-telefono-remitente">
+                        Teléfono del remitente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-telefono-remitente"
+                        placeholder="Se completará automáticamente"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     DIRECCIÓN DEL REMITENTE
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nueva-direccion-remitente">
+                        Dirección del remitente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nueva-direccion-remitente"
+                        placeholder="Se completará automáticamente"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     DESTINATARIO
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nuevo-destinatario">
+                        Destinatario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-destinatario"
+                        placeholder="Nombre del destinatario"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     TELÉFONO DESTINATARIO
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nuevo-telefono">
+                        Teléfono del destinatario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-telefono"
+                        placeholder="Número de teléfono"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     DIRECCIÓN DE ENTREGA
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nueva-direccion">
+                        Dirección de entrega
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nueva-direccion"
+                        placeholder="Dirección completa del destinatario"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     TOTAL
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nuevo-total">
+                        Total del paquete
+                    </label>
+
+                    <input
+                        type="number"
+                        id="nuevo-total"
+                        placeholder="0.00"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     ESTADO DEL PAGO
+                =========================================== -->
+
+                <div class="campo">
+
+                    <label for="nuevo-pago">
+                        Estado del pago
+                    </label>
+
+                    <select
+                        id="nuevo-pago"
+                        required
+                    >
+
+                        <option value="Pendiente">
+                            Pendiente
+                        </option>
+
+                        <option value="Pagado">
+                            Pagado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- MENSAJE -->
+
+                <p
+                    id="mensaje-paquete"
+                    class="mensaje-usuario"
+                ></p>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones-modal">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="cerrarFormularioPaquete()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar paquete
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         MODAL NUEVO CLIENTE
+    =========================================== -->
+
+    <div
+        id="modal-cliente"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+
+            <!-- ENCABEZADO -->
+
+            <div class="modal-encabezado">
+
+                <div>
+
+                    <h2>
+                        Nuevo cliente
+                    </h2>
+
+                    <p>
+                        Registra los datos del cliente remitente.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    onclick="cerrarFormularioCliente()"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 FORMULARIO CLIENTE
+            =========================================== -->
+
+            <form id="formulario-cliente">
+
+
+                <!-- NOMBRE -->
+
+                <div class="campo">
+
+                    <label for="nuevo-cliente-nombre">
+                        Nombre completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-cliente-nombre"
+                        placeholder="Nombre del cliente"
+                        maxlength="150"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- TELÉFONO -->
+
+                <div class="campo">
+
+                    <label for="nuevo-cliente-telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-cliente-telefono"
+                        placeholder="Número de teléfono"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DIRECCIÓN -->
+
+                <div class="campo">
+
+                    <label for="nuevo-cliente-direccion">
+                        Dirección
+                    </label>
+
+                    <textarea
+                        id="nuevo-cliente-direccion"
+                        placeholder="Dirección completa del cliente"
+                        rows="4"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- MENSAJE -->
+
+                <p
+                    id="mensaje-cliente"
+                    class="mensaje-usuario"
+                ></p>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones-modal">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="cerrarFormularioCliente()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar cliente
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         MODAL EDITAR PAQUETE
+    =========================================== -->
+
+    <div
+        id="modal-editar-paquete"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+
+            <!-- ENCABEZADO -->
+
+            <div class="modal-encabezado">
+
+                <div>
+
+                    <h2>
+                        Editar paquete
+                    </h2>
+
+                    <p>
+                        Actualiza la información del paquete.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    onclick="cerrarFormularioEditarPaquete()"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 FORMULARIO EDITAR
+            =========================================== -->
+
+            <form id="formulario-editar-paquete">
+
+
+                <!-- ID OCULTO -->
+
+                <input
+                    type="hidden"
+                    id="editar-paquete-id"
+                >
+
+
+
+                <!-- NÚMERO DE GUÍA -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-guia">
+                        Número de guía
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editar-paquete-guia"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- REMITENTE -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-remitente">
+                        Remitente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editar-paquete-remitente"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- DESTINATARIO -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-destinatario">
+                        Destinatario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editar-paquete-destinatario"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- TELÉFONO -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-telefono">
+                        Teléfono del destinatario
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editar-paquete-telefono"
+                        placeholder="Número de teléfono"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DIRECCIÓN -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-direccion">
+                        Dirección de entrega
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editar-paquete-direccion"
+                        placeholder="Dirección completa"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-total">
+                        Total del paquete
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editar-paquete-total"
+                        placeholder="0.00"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ESTADO DEL PAGO -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-pago">
+                        Estado del pago
+                    </label>
+
+                    <select
+                        id="editar-paquete-pago"
+                        required
+                    >
+
+                        <option value="Pendiente">
+                            Pendiente
+                        </option>
+
+                        <option value="Pagado">
+                            Pagado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ESTADO DEL PAQUETE -->
+
+                <div class="campo">
+
+                    <label for="editar-paquete-estado">
+                        Estado del paquete
+                    </label>
+
+                    <select
+                        id="editar-paquete-estado"
+                        required
+                    >
+
+                        <option value="En almacén">
+                            En almacén
+                        </option>
+
+                        <option value="En ruta">
+                            En ruta
+                        </option>
+
+                        <option value="Entregado">
+                            Entregado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- MENSAJE -->
+
+                <p
+                    id="mensaje-editar-paquete"
+                    class="mensaje-usuario"
+                ></p>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones-modal">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="cerrarFormularioEditarPaquete()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
+

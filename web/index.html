@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="panel">
+
+
+        <!-- ==========================================
+             MENÚ LATERAL
+        =========================================== -->
+
+        <aside class="menu-lateral">
+
+
+            <div class="logo">
+
+                <h2>
+                    JEDi Express
+                </h2>
+
+                <span>
+                    Panel administrativo
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    href="index.html"
+                    class="menu-activo"
+                >
+                    Dashboard
+                </a>
+
+
+                <a href="usuarios.html">
+                    Usuarios
+                </a>
+
+                <a href="clientes.html">
+                    Clientes
+                </a>
+
+
+                <a href="paquetes.html">
+                    Paquetes
+                </a>
+
+
+                <a href="rutas.html">
+                    Rutas
+                </a>
+
+
+                <a href="seguimiento.html">
+                    Seguimiento
+                </a>
+
+
+                <a href="reportes.html">
+                    Reportes
+                </a>
+
+
+                <a href="rastreo.html">
+                    Rastreo público
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-cerrar"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             CONTENIDO PRINCIPAL
+        =========================================== -->
+
+        <main class="contenido-panel">
+
+
+            <!-- BARRA SUPERIOR -->
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Resumen general de las operaciones de JEDi Express.
+                    </p>
+
+                </div>
+
+
+                <div class="usuario">
+                    Administrador
+                </div>
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 TARJETAS PRINCIPALES
+            =========================================== -->
+
+            <section class="tarjetas">
+
+
+                <div class="tarjeta">
+
+                    <span>
+                        Total de paquetes
+                    </span>
+
+                    <strong id="dashboard-total">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <span>
+                        En ruta
+                    </span>
+
+                    <strong id="dashboard-ruta">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <span>
+                        Entregados
+                    </span>
+
+                    <strong id="dashboard-entregados">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <span>
+                        Repartidores activos
+                    </span>
+
+                    <strong id="dashboard-repartidores">
+                        0
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 RESUMEN DEL SISTEMA
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Estado de paquetes
+                        </h2>
+
+                        <p>
+                            Resumen actual de los paquetes registrados.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="resumen-estados">
+
+
+                    <div class="resumen-estado">
+
+                        <span>
+                            En almacén
+                        </span>
+
+                        <strong id="dashboard-almacen">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="resumen-estado">
+
+                        <span>
+                            En ruta
+                        </span>
+
+                        <strong id="dashboard-resumen-ruta">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="resumen-estado">
+
+                        <span>
+                            Entregados
+                        </span>
+
+                        <strong id="dashboard-resumen-entregados">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 ACTIVIDAD RECIENTE
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Actividad reciente
+                        </h2>
+
+                        <p>
+                            Últimos paquetes registrados en el sistema.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Guía
+                                </th>
+
+                                <th>
+                                    Destinatario
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Pago
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-actividad-dashboard">
+
+                            <tr>
+
+                                <td colspan="4">
+                                    Cargando información...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Clientes</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="panel">
+
+
+        <!-- ==========================================
+             MENÚ LATERAL
+        =========================================== -->
+
+        <aside class="menu-lateral">
+
+            <div class="logo">
+
+                <h2>
+                    JEDi Express
+                </h2>
+
+                <span>
+                    Panel administrativo
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a href="index.html">
+                    Dashboard
+                </a>
+
+                <a href="usuarios.html">
+                    Usuarios
+                </a>
+
+                <a
+                    href="clientes.html"
+                    class="menu-activo"
+                >
+                    Clientes
+                </a>
+
+                <a href="paquetes.html">
+                    Paquetes
+                </a>
+
+                <a href="rutas.html">
+                    Rutas
+                </a>
+
+                <a href="seguimiento.html">
+                    Seguimiento
+                </a>
+
+                <a href="reportes.html">
+                    Reportes
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-cerrar"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             CONTENIDO PRINCIPAL
+        =========================================== -->
+
+        <main class="contenido-panel">
+
+
+            <!-- ==========================================
+                 BARRA SUPERIOR
+            =========================================== -->
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Clientes
+                    </h1>
+
+                    <p>
+                        Gestión y control de clientes
+                    </p>
+
+                </div>
+
+
+                <div class="usuario">
+                    Administrador
+                </div>
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 SECCIÓN CLIENTES
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+
+                <!-- ENCABEZADO -->
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Clientes registrados
+                        </h2>
+
+                        <p>
+                            Consulta y administra los clientes del sistema.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-principal"
+                        onclick="mostrarFormularioCliente()"
+                    >
+                        Nuevo cliente
+                    </button>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     BÚSQUEDA
+                =========================================== -->
+
+                <div class="filtros-clientes">
+
+                    <div class="campo">
+
+                        <label for="buscar-cliente">
+                            Buscar cliente
+                        </label>
+
+                        <input
+                            type="text"
+                            id="buscar-cliente"
+                            placeholder="Nombre, teléfono o dirección..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     TABLA DE CLIENTES
+                =========================================== -->
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Nombre
+                                </th>
+
+                                <th>
+                                    Teléfono
+                                </th>
+
+                                <th>
+                                    Dirección
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-clientes">
+
+                            <tr>
+
+                                <td colspan="5">
+                                    Cargando clientes...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         MODAL NUEVO CLIENTE
+    =========================================== -->
+
+    <div
+        id="modal-cliente"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+
+            <!-- ENCABEZADO -->
+
+            <div class="modal-encabezado">
+
+                <div>
+
+                    <h2>
+                        Nuevo cliente
+                    </h2>
+
+                    <p>
+                        Registra los datos del cliente.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    onclick="cerrarFormularioCliente()"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 FORMULARIO CLIENTE
+            =========================================== -->
+
+            <form id="formulario-cliente">
+
+
+                <!-- NOMBRE -->
+
+                <div class="campo">
+
+                    <label for="nuevo-cliente-nombre">
+                        Nombre completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-cliente-nombre"
+                        placeholder="Nombre del cliente"
+                        maxlength="150"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- TELÉFONO -->
+
+                <div class="campo">
+
+                    <label for="nuevo-cliente-telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-cliente-telefono"
+                        placeholder="Número de teléfono"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DIRECCIÓN -->
+
+                <div class="campo">
+
+                    <label for="nuevo-cliente-direccion">
+                        Dirección
+                    </label>
+
+                    <textarea
+                        id="nuevo-cliente-direccion"
+                        placeholder="Dirección completa del cliente"
+                        rows="4"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- MENSAJE -->
+
+                <p
+                    id="mensaje-cliente"
+                    class="mensaje-usuario"
+                ></p>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones-modal">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="cerrarFormularioCliente()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar cliente
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+    ```html
+<!-- ==========================================
+     MODAL EDITAR CLIENTE
+=========================================== -->
+
+<div
+    id="modal-editar-cliente"
+    class="modal"
+>
+
+    <div class="modal-contenido">
+
+
+        <!-- ENCABEZADO -->
+
+        <div class="modal-encabezado">
+
+            <div>
+
+                <h2>
+                    Editar cliente
+                </h2>
+
+                <p>
+                    Actualiza la información del cliente.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-cerrar-modal"
+                onclick="cerrarFormularioEditarCliente()"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             FORMULARIO
+        =========================================== -->
+
+        <form id="formulario-editar-cliente">
+
+
+            <!-- ID OCULTO -->
+
+            <input
+                type="hidden"
+                id="editar-cliente-id"
+            >
+
+
+
+            <!-- NOMBRE -->
+
+            <div class="campo">
+
+                <label for="editar-cliente-nombre">
+                    Nombre completo
+                </label>
+
+                <input
+                    type="text"
+                    id="editar-cliente-nombre"
+                    maxlength="150"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- TELÉFONO -->
+
+            <div class="campo">
+
+                <label for="editar-cliente-telefono">
+                    Teléfono
+                </label>
+
+                <input
+                    type="text"
+                    id="editar-cliente-telefono"
+                    maxlength="30"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- DIRECCIÓN -->
+
+            <div class="campo">
+
+                <label for="editar-cliente-direccion">
+                    Dirección
+                </label>
+
+                <textarea
+                    id="editar-cliente-direccion"
+                    rows="4"
+                    required
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- MENSAJE -->
+
+            <p
+                id="mensaje-editar-cliente"
+                class="mensaje-usuario"
+            ></p>
+
+
+
+            <!-- BOTONES -->
+
+            <div class="acciones-modal">
+
+                <button
+                    type="button"
+                    class="btn-cancelar"
+                    onclick="cerrarFormularioEditarCliente()"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-principal"
+                >
+                    Guardar cambios
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

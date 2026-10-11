@@ -1,0 +1,1020 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.panel {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* MENÚ LATERAL */
+
+.menu-lateral {
+    width: 250px;
+    background-color: #1f2937;
+    color: white;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.logo span {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.menu-lateral nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-lateral nav a {
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 13px 15px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.menu-lateral nav a:hover,
+.menu-lateral nav .menu-activo {
+    background-color: #374151;
+    color: white;
+}
+
+.btn-cerrar {
+    margin-top: auto;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #dc2626;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-cerrar:hover {
+    background-color: #b91c1c;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.contenido-panel {
+    flex: 1;
+    padding: 30px;
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.barra-superior h1 {
+    font-size: 28px;
+    color: #1f2937;
+    margin-bottom: 5px;
+}
+
+.barra-superior p {
+    color: #6b7280;
+}
+
+.usuario {
+    background-color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-weight: bold;
+}
+
+
+/* TARJETAS */
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tarjeta {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta span {
+    display: block;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.tarjeta strong {
+    font-size: 30px;
+    color: #1f2937;
+}
+
+
+/* RESUMEN */
+
+.seccion-dashboard {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.seccion-dashboard h2 {
+    margin-bottom: 12px;
+    color: #1f2937;
+}
+
+.seccion-dashboard p {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .panel {
+        flex-direction: column;
+    }
+
+    .menu-lateral {
+        width: 100%;
+    }
+
+    .menu-lateral nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .contenido-panel {
+        padding: 20px;
+    }
+
+    .barra-superior {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* LOGIN */
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f6f8;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background-color: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    font-size: 30px;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 7px;
+    color: #374151;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+}
+
+.campo input:focus {
+    border-color: #374151;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1f2937;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #374151;
+}
+
+.mensaje-login {
+    margin-top: 15px;
+    text-align: center;
+    color: #dc2626;
+    font-size: 14px;
+}
+
+/* ==========================================
+   GESTIÓN DE USUARIOS
+========================================== */
+
+.encabezado-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.encabezado-seccion h2 {
+    margin-bottom: 6px;
+    color: #1f2937;
+}
+
+.encabezado-seccion p {
+    color: #6b7280;
+}
+
+
+/* BOTÓN PRINCIPAL */
+
+.btn-principal {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    background-color: #1f2937;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-principal:hover {
+    background-color: #374151;
+}
+
+
+/* TABLA */
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabla-contenedor table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-contenedor th {
+    text-align: left;
+    padding: 14px;
+    background-color: #f3f4f6;
+    color: #374151;
+    font-size: 14px;
+}
+
+.tabla-contenedor td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+.tabla-contenedor tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+
+/* BOTÓN DE TABLA */
+
+.btn-tabla {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: #374151;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-tabla:hover {
+    background-color: #1f2937;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+/* CONTENIDO DEL MODAL */
+
+.modal-contenido {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ENCABEZADO DEL MODAL */
+
+.modal-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.modal-encabezado h2 {
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.modal-encabezado p {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* BOTÓN CERRAR */
+
+.btn-cerrar-modal {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.btn-cerrar-modal:hover {
+    color: #1f2937;
+}
+
+
+/* SELECT */
+
+.campo select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: white;
+    color: #374151;
+    font-size: 15px;
+    outline: none;
+}
+
+.campo select:focus {
+    border-color: #374151;
+}
+
+
+/* MENSAJE DEL FORMULARIO */
+
+.mensaje-usuario {
+    min-height: 20px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* BOTONES DEL MODAL */
+
+.acciones-modal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancelar {
+    border: 1px solid #d1d5db;
+    padding: 11px 18px;
+    border-radius: 7px;
+    background-color: white;
+    color: #374151;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background-color: #f3f4f6;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .encabezado-seccion {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modal-contenido {
+        padding: 22px;
+    }
+
+    .acciones-modal {
+        flex-direction: column;
+    }
+
+    .acciones-modal button {
+        width: 100%;
+    }
+
+}
+
+/* ==========================================
+   MODAL EDITAR PAQUETE - MÁS COMPACTO
+========================================== */
+
+#modal-editar-paquete .modal-contenido {
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#modal-editar-paquete .campo {
+    margin-bottom: 10px;
+}
+
+#modal-editar-paquete .campo label {
+    margin-bottom: 4px;
+}
+
+#modal-editar-paquete .campo input,
+#modal-editar-paquete .campo select {
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+#modal-editar-paquete .modal-encabezado {
+    margin-bottom: 12px;
+}
+
+#modal-editar-paquete .modal-encabezado h2 {
+    margin-bottom: 3px;
+}
+
+#modal-editar-paquete .modal-encabezado p {
+    margin: 0;
+    font-size: 13px;
+}
+
+#modal-editar-paquete .acciones-modal {
+    margin-top: 12px;
+}
+
+ /* ==========================================
+    MODAL NUEVO PAQUETE - MÁS COMPACTO
+ ========================================== */
+
+#modal-paquete .modal-contenido {
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#modal-paquete .campo {
+    margin-bottom: 10px;
+}
+
+#modal-paquete .campo label {
+    margin-bottom: 4px;
+}
+
+#modal-paquete .campo input,
+#modal-paquete .campo select {
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+#modal-paquete .modal-encabezado {
+    margin-bottom: 12px;
+}
+
+#modal-paquete .modal-encabezado h2 {
+    margin-bottom: 3px;
+}
+
+#modal-paquete .modal-encabezado p {
+    margin: 0;
+    font-size: 13px;
+}
+
+#modal-paquete .acciones-modal {
+    margin-top: 12px;
+}
+
+
+/* ==========================================
+   ESTADOS DE PAQUETES
+========================================== */
+
+.estado-paquete,
+.estado-pago {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* ESTADOS DEL PAQUETE */
+
+.estado-en-almacen {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-en-ruta {
+    background-color: #cfe2ff;
+    color: #084298;
+}
+
+.estado-entregado {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+
+/* ESTADOS DEL PAGO */
+
+.estado-pagado {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.estado-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* ==========================================
+   TARJETAS DE REPORTES
+========================================== */
+
+.tarjetas-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+.tarjetas-dashboard .tarjeta {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+/* ICONO DE LA TARJETA */
+
+.tarjetas-dashboard .tarjeta-icono {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f3f4f6;
+    border-radius: 10px;
+
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+
+/* TEXTO */
+
+.tarjetas-dashboard .tarjeta span {
+    display: block;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+
+.tarjetas-dashboard .tarjeta strong {
+    display: block;
+    font-size: 30px;
+    color: #1f2937;
+}
+
+
+/* ==========================================
+   REPORTES EN PANTALLAS PEQUEÑAS
+========================================== */
+
+@media (max-width: 700px) {
+
+    .tarjetas-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================
+   DASHBOARD - MEJORAS VISUALES
+========================================== */
+
+
+/* TARJETAS PRINCIPALES */
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+.tarjetas .tarjeta {
+    background-color: white;
+    padding: 22px;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.07);
+
+    border: 1px solid #eef0f2;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.tarjetas .tarjeta:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.10);
+
+}
+
+
+.tarjetas .tarjeta span {
+
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.tarjetas .tarjeta strong {
+
+    display: block;
+
+    font-size: 32px;
+
+    color: #1f2937;
+
+}
+
+
+
+/* ==========================================
+   RESUMEN DE ESTADOS
+========================================== */
+
+.resumen-estados {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+
+.resumen-estado {
+
+    padding: 20px;
+
+    background-color: #f8fafc;
+
+    border-radius: 10px;
+
+    border: 1px solid #e5e7eb;
+
+}
+
+
+.resumen-estado span {
+
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.resumen-estado strong {
+
+    display: block;
+
+    font-size: 28px;
+
+    color: #1f2937;
+
+}
+
+
+
+/* ==========================================
+   TABLA DEL DASHBOARD
+========================================== */
+
+#tabla-actividad-dashboard tr {
+
+    transition:
+        background-color 0.2s ease;
+
+}
+
+
+#tabla-actividad-dashboard tr:hover {
+
+    background-color: #f8fafc;
+
+}
+
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1000px) {
+
+    .tarjetas {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .resumen-estados {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .tarjetas {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .resumen-estados {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* ==========================================
+   USUARIOS - FILTROS
+========================================== */
+
+.filtros-usuarios {
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.filtros-usuarios .campo {
+
+    margin-bottom: 0;
+
+}
+
+
+/* ==========================================
+   ESTADOS DE USUARIO
+========================================== */
+
+.estado-usuario-activo,
+.estado-usuario-inactivo {
+
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.estado-usuario-activo {
+
+    background-color: #d1e7dd;
+
+    color: #0f5132;
+
+}
+
+
+.estado-usuario-inactivo {
+
+    background-color: #f8d7da;
+
+    color: #842029;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .filtros-usuarios {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* ==========================================
+   PAQUETES - FILTROS
+========================================== */
+
+.filtros-paquetes {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.filtros-paquetes .campo {
+    margin-bottom: 0;
+}
+
+.filtros-paquetes .campo input,
+.filtros-paquetes .campo select {
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.filtros-paquetes .campo input:focus,
+.filtros-paquetes .campo select:focus {
+    border-color: #374151;
+    box-shadow: 0 0 0 2px rgba(55, 65, 81, 0.08);
+}
+
+@media (max-width: 800px) {
+
+    .filtros-paquetes {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .filtros-paquetes {
+        grid-template-columns: 1fr;
+    }
+
+}

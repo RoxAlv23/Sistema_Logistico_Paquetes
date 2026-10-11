@@ -1,21 +1,28 @@
-# Variables de entorno
+﻿# Variables de entorno y secretos
 .env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
 
 # Python
 __pycache__/
 *.py[cod]
-
-# Entornos virtuales
 venv/
 .venv/
+backend/venv/
+backend/.venv/
+
+# Copias de bases de datos
+backups/*.sql
+backups/*.sql.gz
+backups/*.bak
 
 # Logs
 *.log
 
-# Sistema operativo
-.DS_Store
-Thumbs.db
-
-# IDE
+# Editores y sistema operativo
 .vscode/
 .idea/
+.DS_Store
+Thumbs.db

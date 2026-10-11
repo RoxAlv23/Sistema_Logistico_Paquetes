@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Usuarios</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="panel">
+
+
+        <!-- ==========================================
+             MENÚ LATERAL
+        =========================================== -->
+
+        <aside class="menu-lateral">
+
+            <div class="logo">
+
+                <h2>
+                    JEDi Express
+                </h2>
+
+                <span>
+                    Panel administrativo
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a href="index.html">
+                    Dashboard
+                </a>
+
+                <a
+                    href="usuarios.html"
+                    class="menu-activo"
+                >
+                    Usuarios
+                </a>
+
+                <a href="clientes.html">
+                    Clientes
+                </a>
+
+                <a href="paquetes.html">
+                    Paquetes
+                </a>
+
+                <a href="rutas.html">
+                    Rutas
+                </a>
+
+                <a href="seguimiento.html">
+                    Seguimiento
+                </a>
+
+                <a href="reportes.html">
+                    Reportes
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-cerrar"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+        </aside>
+
+
+        <!-- ==========================================
+             CONTENIDO PRINCIPAL
+        =========================================== -->
+
+        <main class="contenido-panel">
+
+
+            <!-- BARRA SUPERIOR -->
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Usuarios
+                    </h1>
+
+                    <p>
+                        Gestión de usuarios del sistema
+                    </p>
+
+                </div>
+
+
+                <div class="usuario">
+
+                    Administrador
+
+                </div>
+
+            </header>
+
+<div class="filtros-usuarios">
+
+    <div class="campo">
+        <label for="buscar-usuario">
+            Buscar usuario
+        </label>
+
+        <input
+            type="text"
+            id="buscar-usuario"
+            placeholder="Nombre o correo..."
+        >
+    </div>
+
+
+    <div class="campo">
+
+        <label for="filtro-rol">
+            Filtrar por rol
+        </label>
+
+        <select id="filtro-rol">
+
+            <option value="">
+                Todos los roles
+            </option>
+
+            <option value="1">
+                Administrador
+            </option>
+
+            <option value="2">
+                Personal de oficina
+            </option>
+
+            <option value="3">
+                Repartidor
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+            <!-- ==========================================
+                 SECCIÓN USUARIOS
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Usuarios registrados
+                        </h2>
+
+                        <p>
+                            Administra los usuarios y sus roles.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-principal"
+                        onclick="mostrarFormularioUsuario()"
+                    >
+                        Nuevo usuario
+                    </button>
+
+                </div>
+
+
+                <!-- TABLA -->
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Nombre
+                                </th>
+
+                                <th>
+                                    Correo
+                                </th>
+
+                                <th>
+                                    Rol
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-usuarios">
+
+                            <tr>
+
+                                <td colspan="6">
+                                    Cargando usuarios...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+    <!-- ==========================================
+         MODAL NUEVO USUARIO
+    =========================================== -->
+
+    <div
+        id="modal-usuario"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+
+            <div class="modal-encabezado">
+
+                <div>
+
+                    <h2>
+                        Nuevo usuario
+                    </h2>
+
+                    <p>
+                        Registra un nuevo usuario en JEDi Express.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    onclick="cerrarFormularioUsuario()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- FORMULARIO -->
+
+            <form id="formulario-usuario">
+
+
+                <div class="campo">
+
+                    <label for="nuevo-nombre">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevo-nombre"
+                        placeholder="Nombre completo"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="nuevo-correo">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="nuevo-correo"
+                        placeholder="correo@ejemplo.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="nuevo-password">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="nuevo-password"
+                        placeholder="Contraseña"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="nuevo-rol">
+                        Rol
+                    </label>
+
+                    <select
+                        id="nuevo-rol"
+                        required
+                    >
+
+                        <option value="1">
+                            Administrador
+                        </option>
+
+                        <option value="2">
+                            Personal de oficina
+                        </option>
+
+                        <option value="3">
+                            Repartidor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MENSAJE -->
+
+                <p
+                    id="mensaje-usuario"
+                    class="mensaje-usuario"
+                ></p>
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones-modal">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="cerrarFormularioUsuario()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar usuario
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+    </div>
+<!-- ==========================================
+     MODAL EDITAR USUARIO
+========================================== -->
+
+<div id="modal-editar-usuario" class="modal">
+
+    <div class="modal-contenido">
+
+        <div class="modal-encabezado">
+
+            <div>
+                <h2>Editar usuario</h2>
+
+                <p>
+                    Actualiza la información del usuario.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="btn-cerrar-modal"
+                onclick="cerrarFormularioEditarUsuario()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="formulario-editar-usuario">
+
+            <!-- ID OCULTO -->
+
+            <input
+                type="hidden"
+                id="editar-id"
+            >
+
+
+            <!-- NOMBRE -->
+
+            <div class="campo">
+
+                <label for="editar-nombre">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="editar-nombre"
+                    placeholder="Nombre completo"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CORREO -->
+
+            <div class="campo">
+
+                <label for="editar-correo">
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    id="editar-correo"
+                    placeholder="correo@ejemplo.com"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ROL -->
+
+            <div class="campo">
+
+                <label for="editar-rol">
+                    Rol
+                </label>
+
+                <select
+                    id="editar-rol"
+                    required
+                >
+
+                    <option value="1">
+                        Administrador
+                    </option>
+
+                    <option value="2">
+                        Personal de oficina
+                    </option>
+
+                    <option value="3">
+                        Repartidor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ESTADO -->
+
+            <div class="campo">
+
+                <label for="editar-estado">
+                    Estado
+                </label>
+
+                <select
+                    id="editar-estado"
+                    required
+                >
+
+                    <option value="true">
+                        Activo
+                    </option>
+
+                    <option value="false">
+                        Inactivo
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- MENSAJE -->
+
+            <p
+                id="mensaje-editar-usuario"
+                class="mensaje-usuario"
+            ></p>
+
+
+            <!-- BOTONES -->
+
+            <div class="acciones-modal">
+
+                <button
+                    type="button"
+                    class="btn-cancelar"
+                    onclick="cerrarFormularioEditarUsuario()"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-principal"
+                >
+                    Guardar cambios
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/app.js"></script>
+
+
+</body>
+
+</html>

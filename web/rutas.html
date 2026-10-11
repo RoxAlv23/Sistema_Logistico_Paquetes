@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JEDi Express - Rutas</title>
+
+    <link
+        rel="stylesheet"
+        href="css/estilos.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="panel">
+
+
+        <!-- ==========================================
+             MENÚ LATERAL
+        =========================================== -->
+
+        <aside class="menu-lateral">
+
+            <div class="logo">
+
+                <h2>
+                    JEDi Express
+                </h2>
+
+                <span>
+                    Panel administrativo
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <a href="index.html">
+                    Dashboard
+                </a>
+
+                <a href="usuarios.html">
+                    Usuarios
+                </a>
+
+                <a href="clientes.html">
+                    Clientes
+                </a>
+
+                <a href="paquetes.html">
+                    Paquetes
+                </a>
+
+                <a
+                    href="rutas.html"
+                    class="menu-activo"
+                >
+                    Rutas
+                </a>
+
+                <a href="seguimiento.html">
+                    Seguimiento
+                </a>
+
+                <a href="reportes.html">
+                    Reportes
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-cerrar"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             CONTENIDO PRINCIPAL
+        =========================================== -->
+
+        <main class="contenido-panel">
+
+
+            <!-- BARRA SUPERIOR -->
+
+            <header class="barra-superior">
+
+                <div>
+
+                    <h1>
+                        Rutas
+                    </h1>
+
+                    <p>
+                        Gestión y asignación de rutas
+                    </p>
+
+                </div>
+
+
+                <div class="usuario">
+                    Administrador
+                </div>
+
+            </header>
+
+
+
+            <!-- ==========================================
+                 SECCIÓN RUTAS
+            =========================================== -->
+
+            <section class="seccion-dashboard">
+
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <h2>
+                            Rutas registradas
+                        </h2>
+
+                        <p>
+                            Administra las rutas y sus repartidores.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-principal"
+                        onclick="mostrarFormularioRuta()"
+                    >
+                        Nueva ruta
+                    </button>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                     TABLA DE RUTAS
+                =========================================== -->
+
+                <div class="tabla-contenedor">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Ruta
+                                </th>
+
+                                <th>
+                                    Repartidor
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-rutas">
+
+                            <tr>
+
+                                <td colspan="4">
+                                    Cargando rutas...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+            <!-- ==========================================
+     ASIGNAR PAQUETE A RUTA
+========================================== -->
+
+<section class="seccion-dashboard">
+
+    <div class="encabezado-seccion">
+
+        <div>
+
+            <h2>
+                Asignar paquete a ruta
+            </h2>
+
+            <p>
+                Asigna un paquete a una ruta existente.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <form id="formulario-asignacion-ruta">
+
+        <div class="campo">
+
+            <label for="asignacion-ruta">
+                Ruta
+            </label>
+
+            <select
+                id="asignacion-ruta"
+                required
+            >
+
+                <option value="">
+                    Selecciona una ruta
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="campo">
+
+            <label for="asignacion-paquete">
+                Paquete
+            </label>
+
+            <select
+                id="asignacion-paquete"
+                required
+            >
+
+                <option value="">
+                    Selecciona un paquete
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <p
+            id="mensaje-asignacion-ruta"
+            class="mensaje-usuario"
+        ></p>
+
+
+        <div class="acciones-modal">
+
+            <button
+                type="submit"
+                class="btn-principal"
+            >
+                Asignar paquete
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+<!-- ==========================================
+     PAQUETES ASIGNADOS A RUTAS
+========================================== -->
+
+<section class="seccion-dashboard">
+
+    <div class="encabezado-seccion">
+
+        <div>
+
+            <h2>
+                Paquetes asignados
+            </h2>
+
+            <p>
+                Consulta los paquetes asignados a cada ruta.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="tabla-contenedor">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Paquete
+                    </th>
+
+                    <th>
+                        Ruta
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tabla-asignaciones">
+
+                <tr>
+
+                    <td colspan="3">
+                        Cargando asignaciones...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     MODAL VER RUTA
+========================================== -->
+
+<div
+    id="modal-ver-ruta"
+    class="modal"
+>
+
+    <div class="modal-contenido">
+
+        <div class="modal-encabezado">
+
+            <div>
+
+                <h2>
+                    Detalle de la ruta
+                </h2>
+
+                <p>
+                    Información de la ruta seleccionada.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn-cerrar-modal"
+                onclick="cerrarDetalleRuta()"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                ID de ruta
+            </label>
+
+            <input
+                type="text"
+                id="detalle-ruta-id"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Nombre de la ruta
+            </label>
+
+            <input
+                type="text"
+                id="detalle-ruta-nombre"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Repartidor
+            </label>
+
+            <input
+                type="text"
+                id="detalle-ruta-repartidor"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="acciones-modal">
+
+            <button
+                type="button"
+                class="btn-cancelar"
+                onclick="cerrarDetalleRuta()"
+            >
+                Cerrar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         MODAL NUEVA RUTA
+    =========================================== -->
+
+    <div
+        id="modal-ruta"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+
+            <!-- ENCABEZADO -->
+
+            <div class="modal-encabezado">
+
+                <div>
+
+                    <h2>
+                        Nueva ruta
+                    </h2>
+
+                    <p>
+                        Registra una nueva ruta en JEDi Express.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-cerrar-modal"
+                    onclick="cerrarFormularioRuta()"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- FORMULARIO -->
+
+            <form id="formulario-ruta">
+
+
+                <!-- NOMBRE -->
+
+                <div class="campo">
+
+                    <label for="nueva-ruta-nombre">
+                        Nombre de la ruta
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nueva-ruta-nombre"
+                        placeholder="Ej. Ruta San Salvador"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- REPARTIDOR -->
+
+                <div class="campo">
+
+                    <label for="nueva-ruta-repartidor">
+                        Repartidor
+                    </label>
+
+                    <select
+                        id="nueva-ruta-repartidor"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona un repartidor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- MENSAJE -->
+
+                <p
+                    id="mensaje-ruta"
+                    class="mensaje-usuario"
+                ></p>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones-modal">
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="cerrarFormularioRuta()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-principal"
+                    >
+                        Guardar ruta
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
