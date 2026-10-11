@@ -6,7 +6,9 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Boolean,
-    Float
+    Float,
+    ForeignKey,
+    Numeric
 )
 
 from sqlalchemy.orm import relationship
@@ -42,16 +44,41 @@ class Usuario(Base):
 class Cliente(Base):
     __tablename__ = "clientes"
 
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(150), nullable=False)
-    telefono = Column(String(30), nullable=False)
-    direccion = Column(Text, nullable=False)
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    nombre = Column(
+        String(150),
+        nullable=False
+    )
+
+    telefono = Column(
+        String(30),
+        nullable=False
+    )
+
+    direccion = Column(
+        Text,
+        nullable=False
+    )
+
+    paquetes = relationship(
+        "Paquete",
+        back_populates="cliente"
+    )
 
 
 class Paquete(Base):
     __tablename__ = "paquetes"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
 
     numero_guia = Column(
         String(30),
@@ -60,20 +87,63 @@ class Paquete(Base):
         index=True
     )
 
-    remitente = Column(String(150), nullable=False)
-    destinatario = Column(String(150), nullable=False)
-    telefono_destinatario = Column(String(30), nullable=False)
-    direccion_entrega = Column(Text, nullable=False)
+    cliente_id = Column(
+        Integer,
+        ForeignKey("clientes.id"),
+        nullable=False
+    )
 
-    estado_pago = Column(String(50), nullable=False)
-    estado = Column(String(50), default="En almacén")
+    remitente = Column(
+        String(150),
+        nullable=False
+    )
+
+    destinatario = Column(
+        String(150),
+        nullable=False
+    )
+
+    telefono_destinatario = Column(
+        String(30),
+        nullable=False
+    )
+
+    direccion_entrega = Column(
+        Text,
+        nullable=False
+    )
+
+    total = Column(
+        Numeric(10, 2),
+        nullable=False,
+        default=0
+    )
+
+    estado_pago = Column(
+        String(50),
+        nullable=False
+    )
+
+    estado = Column(
+        String(50),
+        default="En almacén"
+    )
 
     fecha_registro = Column(
         DateTime,
         default=datetime.utcnow
     )
 
-    entregas = relationship("Entrega", back_populates="paquete")
+    cliente = relationship(
+        "Cliente",
+        back_populates="paquetes"
+    )
+
+    entregas = relationship(
+        "Entrega",
+        back_populates="paquete"
+    )
+
     asignacion = relationship(
         "Asignacion",
         back_populates="paquete",

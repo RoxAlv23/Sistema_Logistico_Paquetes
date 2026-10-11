@@ -1,8 +1,9 @@
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..models import Paquete
+from ..models import Paquete, Cliente
 from ..schemas import (
     PaqueteCreate,
     PaqueteResponse,
@@ -54,14 +55,29 @@ def crear_paquete(
         ["Administrador", "Personal de oficina"]
     )
 
+    # Buscar el cliente seleccionado
+    cliente = db.query(Cliente).filter(
+        Cliente.id == paquete.cliente_id
+    ).first()
+
+    if not cliente:
+        raise HTTPException(
+            status_code=404,
+            detail="Cliente no encontrado"
+        )
+
+    # Generar número de guía
     numero_guia = generar_numero_guia(db)
 
+    # Crear paquete
     nuevo_paquete = Paquete(
         numero_guia=numero_guia,
-        remitente=paquete.remitente,
+        cliente_id=cliente.id,
+        remitente=cliente.nombre,
         destinatario=paquete.destinatario,
         telefono_destinatario=paquete.telefono_destinatario,
         direccion_entrega=paquete.direccion_entrega,
+        total=paquete.total,
         estado_pago=paquete.estado_pago,
         estado="En almacén"
     )
@@ -146,7 +162,25 @@ def actualizar_paquete(
             detail="Paquete no encontrado"
         )
 
+    # Actualizar cliente
+    if datos.cliente_id is not None:
+
+        cliente = db.query(Cliente).filter(
+            Cliente.id == datos.cliente_id
+        ).first()
+
+        if not cliente:
+            raise HTTPException(
+                status_code=404,
+                detail="Cliente no encontrado"
+            )
+
+        paquete.cliente_id = cliente.id
+        paquete.remitente = cliente.nombre
+
+    # Actualizar estado
     if datos.estado is not None:
+
         estados_validos = [
             "En almacén",
             "En ruta",
@@ -161,14 +195,30 @@ def actualizar_paquete(
 
         paquete.estado = datos.estado
 
+    # Actualizar estado de pago
     if datos.estado_pago is not None:
         paquete.estado_pago = datos.estado_pago
 
+    # Actualizar dirección
     if datos.direccion_entrega is not None:
         paquete.direccion_entrega = datos.direccion_entrega
 
+    # Actualizar teléfono del destinatario
     if datos.telefono_destinatario is not None:
-        paquete.telefono_destinatario = datos.telefono_destinatario
+        paquete.telefono_destinatario = (
+            datos.telefono_destinatario
+        )
+
+    # Actualizar total
+    if datos.total is not None:
+
+        if datos.total < 0:
+            raise HTTPException(
+                status_code=400,
+                detail="El total no puede ser negativo"
+            )
+
+        paquete.total = datos.total
 
     db.commit()
     db.refresh(paquete)

@@ -47,20 +47,31 @@ class UsuarioResponse(BaseModel):
         from_attributes = True
 
 class PaqueteBase(BaseModel):
+
+    cliente_id: Optional[int] = None
+
     remitente: str
+
     destinatario: str
+
     telefono_destinatario: str
+
     direccion_entrega: str
+
+    total: float
+
     estado_pago: str
 
 
 class PaqueteCreate(PaqueteBase):
     pass
 
-
 class PaqueteResponse(PaqueteBase):
+
     id: int
+
     numero_guia: str
+
     estado: str
 
     class Config:
@@ -68,10 +79,18 @@ class PaqueteResponse(PaqueteBase):
 
 
 class PaqueteUpdate(BaseModel):
+
+    cliente_id: Optional[int] = None
+
     estado: Optional[str] = None
+
     estado_pago: Optional[str] = None
+
     direccion_entrega: Optional[str] = None
+
     telefono_destinatario: Optional[str] = None
+
+    total: Optional[float] = None
 
 
 class RutaCreate(BaseModel):
@@ -136,11 +155,23 @@ class ComprobanteResponse(BaseModel):
         from_attributes = True
 
 class SeguimientoResponse(BaseModel):
+
     numero_guia: str
+
+    remitente: str
+
     destinatario: str
+
+    telefono_destinatario: str
+
     direccion_entrega: str
+
     estado: str
+
+    estado_pago: str
+
     fecha_registro: datetime
+
     fecha_entrega: Optional[datetime] = None
 
 class UbicacionCreate(BaseModel):

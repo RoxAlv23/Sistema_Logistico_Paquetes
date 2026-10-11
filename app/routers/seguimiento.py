@@ -38,10 +38,13 @@ def consultar_seguimiento(
     ).first()
 
     return {
-        "numero_guia": paquete.numero_guia,
-        "destinatario": paquete.destinatario,
-        "direccion_entrega": paquete.direccion_entrega,
-        "estado": paquete.estado,
-        "fecha_registro": paquete.fecha_registro,
-        "fecha_entrega": entrega.fecha_hora if entrega else None
-    }
+    "numero_guia": paquete.numero_guia,
+    "remitente": paquete.remitente,
+    "destinatario": paquete.destinatario,
+    "telefono_destinatario": paquete.telefono_destinatario,
+    "direccion_entrega": paquete.direccion_entrega,
+    "estado": paquete.estado,
+    "estado_pago": paquete.estado_pago,
+    "fecha_registro": paquete.fecha_registro,
+    "fecha_entrega": entrega.fecha_hora if entrega else None
+}

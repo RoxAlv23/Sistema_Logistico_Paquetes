@@ -36,6 +36,9 @@ def verificar_password(
         password_hash
     )
 
+def generar_password_hash(password):
+    return pwd_context.hash(password)
+
 
 def obtener_usuario_actual(
     token: str = Depends(oauth2_scheme),
