@@ -26,3 +26,22 @@ backups/*.bak
 .idea/
 .DS_Store
 Thumbs.db
+
+# Flutter y Dart
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/build/
+**/coverage/
+**/*.iml
+**/.packages
+
+# Configuración local y claves privadas
+**/local.properties
+**/key.properties
+**/*.jks
+**/*.keystore
+
+# Archivos generados por Flutter para iOS
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
